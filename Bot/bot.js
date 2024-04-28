@@ -58,21 +58,24 @@ async function login(page, text, username) {
     if (!found) {
 
         await page.type("input[class='name']", username);
-       
+
 
         await page.waitForSelector("input[class='password']");
 
         await page.type("input[class='password']", text);
-        console.log("here6")
+        // console.log("here6")
 
         const waitForSelectorPromise = page.waitForSelector("button[class='submit']");
         // const buttonPromise = buttonClick(page, 'submit');
 
         const timeout = setTimeout(() => {
             console.log("Timeout reached.");
-            found = true
+            found = true;
+            if (text === "ACM") {
+                process.exit(0);
+            }
             return
-        }, 1000); 
+        }, 1000);
 
         try {
             await waitForSelectorPromise;
@@ -99,10 +102,7 @@ async function login(page, text, username) {
             }
 
         } catch (err) {
-            if (text.length > 6) {
-            } else {
-                console.log('Password Length is smaller than 6');
-            }
+
         }
         curr_pass = text;
     } else {
@@ -140,9 +140,14 @@ async function read(page, username) {
 
         } else {
             console.log("Found")
+            if (curr_pass === "ACM") {
+                console.log("here")
+                return
+                process.exit(0)
+            }
             console.log("Correct Password: " + curr_pass);
             const fs = require('fs')
-            let data = "Username: "+username+"; Password: " + curr_pass;
+            let data = "Username: " + username + "; Password: " + curr_pass;
             fs.writeFile('correct_password.txt', data, (err) => {
                 if (err) throw err;
             })

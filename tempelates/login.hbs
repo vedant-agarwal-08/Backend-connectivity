@@ -1,18 +1,30 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  </head>
+  <body>
     <h2>Login</h2>
-    <form action="/login" method="post">
-        <input type="text" name="name" id="" placeholder="Name">
-        <input type="password" name="password" id="" placeholder="Password">
-        <input type="submit">
+    <form action="/login" method="post"> 
+    {{!-- <form action="/loginReCaptcha" method="post"> --}}
+      <input class="name" type="text" name="name" id="" placeholder="Name" />
+      <input
+        class="password"
+        type="password"
+        name="password"
+        id=""
+        placeholder="Password"
+      />
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lf8G8opAAAAAN1QPdVVB3pXuaKWyT-r_D52uQM6"
+      ></div><br />
+      <button class="submit" type="submit">Submit</button>
     </form>
     <a href="/signup">Make a new account</a>
-</body>
+  </body>
 </html>
